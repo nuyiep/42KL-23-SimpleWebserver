@@ -1,0 +1,41 @@
+
+1. Listens
+2. On a port 
+3. For a request 
+4. Transport Protocol
+5. Response
+6. Resource
+
+OSI
+- 4th layer: transport layer 
+	- makes sure that data are sent and received in the correct sequence
+	- provides flow control and error handling
+	- e.g. transport layer protocols: transmission control protocol (TCP),
+			User Datagram Protocol (UDP) and Sequence Packet Exchange (SPX)
+	- mainly use TCP to implement HTTP server
+- HTTP communication usually takes place over TCP/IP connections
+- Default port is TCP80, but other ports can be used
+- HTTP only presumes a reliable transport
+
+Steps involved in using sockets
+1. Create the socket 
+2. Identify the socket 
+3. On the server, wait for an incoming connection
+4. Send and receive messages
+5. Close the socket
+
+1. Create the socket
+	- A socket, server_fd, is created with the socket system call:
+		int server_fd = socket(domain, type, protocol);
+	- All the parameters as well as the return value are integers
+2. Name a socket
+	- Assign a transport address to the socket (a port number in IP networking)
+	- 
+
+HTTP Methods
+	- POST - create
+	- GET - read
+	- PUT - update/edit
+	- DELETE - delete
+
+![Alt text](<Screenshot 2023-10-20 at 21.36.16.png>)
