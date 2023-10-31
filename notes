@@ -37,3 +37,27 @@ HTTP Methods
 	- GET - read
 	- PUT - update/edit
 	- DELETE - delete
+
+select and poll
+	- use for monitoring multiple file descriptiors (such as sockets)
+	  in Unix-like operating systems to determine if data is available 
+	  for reading or writing without blocking the program
+
+select
+	- E.g. we have a single thread that is avoiding dead waiting by using 
+	  select
+	- select tells us when connections have stuff for us to read
+	- can monitor multiple FD simultaneously and notify when any of them
+	  are ready for reading, writing
+
+poll
+
+ I/O multiplexing
+	- Can be just one thread - one thread can handle multiple I/O operation
+	  E.g. of multiplexing- In a school, there are 1024 students, one teacher can answer 
+	  1024 student's questions. Each students take turns and raise their hands to ask questions 
+	- Different from multithreading - multithreading- one thread handles only one I/O operation
+	- E.g. of multithreading- In a school, there are 1024 students, each student is allocated 
+	  with one teacher, where the teacher will only answer that particular student's questions
+	  The teacher will wait while the student has no questions to answer.
+

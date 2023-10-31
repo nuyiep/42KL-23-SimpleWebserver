@@ -1,5 +1,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,6 +66,13 @@ void	receive(serverData &data) {
 	std::cout << MAGENTA << "Route: " << data.route << RESET << std::endl;
 }
 
+/**
+ * @brief Post Request
+ * 
+ * @param data 
+ * Example where file cannot be opened:
+ * 			- Permission issues, file is a directory
+ */
 void	handlePost(serverData &data) { // If file exists, throw 400
 	std::string file_path = "." + data.route;
 
@@ -76,13 +84,17 @@ void	handlePost(serverData &data) { // If file exists, throw 400
 		std::cout << "File created successfully" << std::endl;
 	}
 	else
+	{
 		std::cout << "Unable to create file" << std::endl;
+		data.response = "HTTP/1.1 400 Bad Request\r\n";
+	}
 	data.response += "Hello from the server! POST request received.";
 }
 
 void	handleGet(serverData &data) { // If file does not exists, throw 404
 	std::string file_path = "." + data.route;
-	std::string line;
+	std::cout << data.route << std::endl;
+	std::string line; ///Users/plau/23-SimpleWebserv/index.html
 
 	std::ifstream file_stream(file_path);
 
@@ -170,7 +182,7 @@ void	bind_socket(int server_fd, int port) {
 	/* connection's setting */
 	struct sockaddr_in address;
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = htonl(INADDR_ANY);
+	address.sin_addr.s_addr = INADDR_ANY;
 	address.sin_port = htons(port);
 
 	if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) 

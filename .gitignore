@@ -32,3 +32,6 @@
 *.app
 
 sean
+.vscode
+.DS_Store
+```
